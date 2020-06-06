@@ -1,5 +1,0 @@
-{
-    "env": "dev",
-    "mongoURI": "mongodb+srv://janek:Tt9LmqmcL80oIACp@collabfinder-ajn4y.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "tgl2ymyMVNPOGtAnl"
-}

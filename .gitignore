@@ -1,2 +1,4 @@
 node_modules
-config/default.json
+api/config/default.json
+api/node_modules
+frontend/node_modules

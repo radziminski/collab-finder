@@ -1,0 +1,27 @@
+.bg {
+    &-light {
+        background-color: $color-white;
+    }
+
+    &-dark {
+        background-color: $color-dark;
+    }
+
+    &-primary {
+        background-color: $color-primary;
+    }
+
+    &-secondary {
+        background-color: $color-secondary;
+    }
+
+    &-primary-gradient {
+        background-color: $color-primary;
+        background-image: $gradient-horizontal;
+    }
+
+    &-primary-gradient-rev {
+        background-color: $color-primary;
+        background-image: $gradient-horizontal-rev;
+    }
+}

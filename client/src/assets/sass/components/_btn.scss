@@ -1,0 +1,30 @@
+.btn {
+    display: block;
+    width: 20rem;
+    padding: 1.2rem 1.5rem;
+    font-size: inherit;
+    margin: 0 3rem;
+
+    &-full {
+        background-image: $gradient-horizontal;
+    }
+
+    &-ghost {
+        color: $color-primary;
+        border: 1px solid $color-primary;
+    }
+
+    &-white {
+        color: $color-grey;
+        background-color: rgba($color-white, 0.6);
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+
+    &-center {
+        justify-content: center;
+    }
+}

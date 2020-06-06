@@ -1,0 +1,17 @@
+.home {
+    background-image: linear-gradient(to right, rgba($color-primary, 0), rgba($color-secondary, 0)),
+        url('../../img/bg-home.jpg');
+    height: 100vh;
+    background-color: $color-secondary;
+    position: relative;
+    background-blend-mode: screen multiply;
+
+    &-hero {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $color-white;
+        text-align: center;
+    }
+}

@@ -1,0 +1,52 @@
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: $color-grey-dark;
+}
+
+.text {
+    &-dark {
+        color: $color-grey;
+    }
+
+    &-gradient {
+        background: $gradient-horizontal;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &-x-large {
+        font-size: 7.6rem;
+        line-height: 1.3;
+    }
+
+    &-large {
+        font-size: 3.2rem;
+    }
+
+    &-medium {
+        font-size: 3rem;
+    }
+
+    &-small {
+        font-size: 2rem;
+    }
+
+    &-thin {
+        font-weight: 300;
+    }
+
+    &-bold {
+        font-weight: 800;
+    }
+
+    &-spaced {
+        letter-spacing: 1.5px;
+    }
+
+    &-shadow {
+        text-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    }
+}

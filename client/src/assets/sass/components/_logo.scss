@@ -1,0 +1,10 @@
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 20rem;
+    color: $color-grey;
+    font-size: 3rem;
+    padding: 1rem;
+    font-weight: 400;
+}

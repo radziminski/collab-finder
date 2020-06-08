@@ -11,7 +11,8 @@ exports.collabValidator = [
     check('genres').not().isEmpty(),
 ];
 exports.addNewCollab = catchAsync(async (req, res, next) => {
-    validateReq(req, next);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return next(new AppError('Wrong data sent.', 400, errors.array()));
 
     const { title, description, daws, vsts, genres } = req.body;
     const collabFields = {};
@@ -112,7 +113,8 @@ exports.unLikeCollab = catchAsync(async (req, res, next) => {
 
 exports.collabCommentValidator = [check('text').not().isEmpty()];
 exports.commentCollab = catchAsync(async (req, res, next) => {
-    validateReq(req, next);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return next(new AppError('Wrong data sent.', 400, errors.array()));
 
     const collab = await Collab.findOne({ _id: req.params.id });
     if (!collab) return next(new AppError('Collab with given id does not exist'), 400);
@@ -155,7 +157,8 @@ exports.unCommentCollab = catchAsync(async (req, res, next) => {
 
 exports.applyForCollabValidator = [check('msg').not().isEmpty()];
 exports.applyForCollab = catchAsync(async (req, res, next) => {
-    validateReq(req, next);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return next(new AppError('Wrong data sent.', 400, errors.array()));
 
     const collab = await Collab.findOne({ _id: req.params.id });
     if (!collab) return next(new AppError('Collab with given id does not exist'), 400);

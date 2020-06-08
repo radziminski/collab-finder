@@ -13,7 +13,7 @@
     .nav {
         height: 100%;
 
-        li {
+        &-link {
             position: relative;
             padding: 0.5rem 3rem;
             height: 100%;
@@ -48,14 +48,7 @@
         }
 
         .selected::after {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-image: $gradient-horizontal;
+            opacity: 1 !important;
         }
     }
 }

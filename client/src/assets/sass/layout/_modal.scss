@@ -1,0 +1,33 @@
+.modal {
+    &-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 800;
+        animation: fade-in 0.11s ease-in-out;
+    }
+
+    &-window {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 850;
+        background-color: $color-white;
+        padding: 3rem 5rem 3.5rem 5rem;
+        width: 90%;
+        max-width: 56rem;
+        animation: fade-in 0.11s ease-in-out;
+        border-radius: 3px;
+    }
+
+    &-close-btn {
+        position: absolute;
+        top: -0.7rem;
+        right: -0.5rem;
+        font-size: 2rem;
+    }
+}

@@ -10,13 +10,18 @@
 @import './utils/colors';
 @import './utils/padding';
 @import './utils/margin';
+@import './utils/size';
+@import './utils/other';
 
 @import './components/logo';
 @import './components/btn';
+@import './components/inputs';
+@import './components/auth';
 
 @import './layout/header';
 @import './layout/grid';
 @import './layout/list';
 @import './layout/navbar';
+@import './layout/modal';
 
 @import './pages/home';

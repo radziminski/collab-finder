@@ -22,7 +22,8 @@ exports.profileValidator = [
 ];
 
 const saveProfile = catchAsync(async (req, res, next, update = false, id = null) => {
-    validateReq(req, next);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return next(new AppError('Wrong data sent.', 400, errors.array()));
 
     const { website, company, location, bio, status, daw, skills, youtube, facebook, instagram, soundcloud } = req.body;
 
@@ -113,7 +114,8 @@ exports.deleteMyProfile = catchAsync(async (req, res, next) => {
 
 // Function for adding fields in arrays in doc like experiance, education
 const addNewProfileElement = catchAsync(async (req, res, next, parent) => {
-    validateReq(req, next);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return next(new AppError('Wrong data sent.', 400, errors.array()));
 
     const newElement = { ...req.body };
     const profile = await Profile.findOne({ user: req.user.id });

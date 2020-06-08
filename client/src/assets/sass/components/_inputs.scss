@@ -1,0 +1,45 @@
+.text-input {
+    width: 100%;
+    display: block;
+    cursor: text;
+    border: none;
+    margin: 0 0 3rem 0;
+    padding: 0.9rem 1rem 0.9rem 4.6rem;
+    font: inherit;
+    font-size: 2rem;
+    outline: none;
+
+    position: relative;
+    border-bottom: 1px solid $color-grey;
+
+    &-icon {
+        position: absolute;
+        bottom: 1.1rem;
+        left: 1rem;
+        font-size: 1.8rem;
+        transition: all 0.2s;
+    }
+
+    &-container {
+        width: 100%;
+        position: relative;
+    }
+
+    &-label {
+        font-size: 1.7rem;
+        display: block;
+        text-transform: capitalize;
+    }
+
+    &::placeholder {
+        color: $color-grey-medium;
+    }
+
+    &:focus {
+        border-bottom: 1px solid $color-secondary;
+    }
+
+    &:focus ~ &-icon {
+        @include text-gradient;
+    }
+}

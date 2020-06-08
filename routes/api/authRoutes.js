@@ -7,8 +7,17 @@ const router = express.Router();
 // @desc    Test route
 // @access  Public
 router
-    .route('/')
+    .route('/login')
     .get(authUser, authController.getCurrentUser)
     .post(authController.loginValidator, authController.login);
+
+// @route   POST api/users
+// @desc    Register user
+// @access  Public
+router
+    .route('/register')
+    .post(authController.registerValidator, authController.register)
+    .patch(authUser)
+    .delete(authUser);
 
 module.exports = router;

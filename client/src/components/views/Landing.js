@@ -2,16 +2,16 @@ import React from 'react';
 
 const Landing = () => {
     return (
-        <section class="home">
-            <div class="primary-overlay">
-                <div class="home-hero">
-                    <h2 class="text-large text-thin  text-shadow">Find a collaborator for your new song on</h2>
-                    <h1 class="text-x-large text-bold ">Collab Finder</h1>
-                    <div class="buttons buttons-center m-top-medium">
-                        <a href="register.html" class="btn btn-full">
+        <section className="home">
+            <div className="primary-overlay">
+                <div className="home-hero">
+                    <h2 className="text-large text-thin  text-shadow">Find a partner for your next song on</h2>
+                    <h1 className="text-x-large text-bold ">Collab Finder</h1>
+                    <div className="buttons buttons-center m-top-medium">
+                        <a href="register.html" className="btn btn-full btn-inline">
                             Sign Up
                         </a>
-                        <a href="login.html" class="btn btn-white">
+                        <a href="login.html" className="btn btn-white btn-inline">
                             Login
                         </a>
                     </div>

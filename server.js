@@ -12,7 +12,6 @@ app.use(express.json({ extended: false }));
 connectDB();
 
 // Define Routes
-app.use('/api/users', require('./routes/api/usersRoutes'));
 app.use('/api/profile', require('./routes/api/profileRoutes'));
 app.use('/api/auth', require('./routes/api/authRoutes'));
 app.use('/api/collabs', require('./routes/api/collabsRoutes'));

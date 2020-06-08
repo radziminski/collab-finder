@@ -1,6 +1,6 @@
 @mixin clearfix {
     &::after {
-        content: "";
+        content: '';
         display: table;
         clear: both;
     }
@@ -22,6 +22,12 @@
     }
 }
 
+@mixin text-gradient {
+    background: $gradient-horizontal;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /* 
     Breakpoint arguments:
     - phone
@@ -32,42 +38,49 @@
 
 @mixin respond($breakpoint) {
     @if ($breakpoint) == small-phone {
-        @media (max-width: 30em) {    // 480 px
+        @media (max-width: 30em) {
+            // 480 px
             @content;
         }
     }
 
     @if ($breakpoint) == phone {
-        @media (max-width: 37.5em) {    // 600 px
+        @media (max-width: 37.5em) {
+            // 600 px
             @content;
         }
     }
 
     @if ($breakpoint) == tab-port {
-        @media (max-width: 56.25em) {   // 900 px
+        @media (max-width: 56.25em) {
+            // 900 px
             @content;
         }
     }
 
     @if ($breakpoint) == tab-land {
-        @media (max-width: 75em) {      // 1200 px
+        @media (max-width: 75em) {
+            // 1200 px
             @content;
         }
     }
 
-    @if ($breakpoint) == small-deskt {  // 1440 px
+    @if ($breakpoint) == small-deskt {
+        // 1440 px
         @media (max-width: 90em) {
             @content;
         }
     }
 
-    @if ($breakpoint) == big-deskt {    // 2200 px
+    @if ($breakpoint) == big-deskt {
+        // 2200 px
         @media (min-width: 140em) {
             @content;
         }
     }
 
-    @if ($breakpoint) == small-phone-land {    // 2200 px
+    @if ($breakpoint) == small-phone-land {
+        // 2200 px
         @media (max-height: 30em) {
             @content;
         }

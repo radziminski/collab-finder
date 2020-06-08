@@ -3,10 +3,14 @@
     width: 20rem;
     padding: 1.2rem 1.5rem;
     font-size: inherit;
-    margin: 0 3rem;
+
+    &-inline {
+        margin: 0 3rem;
+    }
 
     &-full {
         background-image: $gradient-horizontal;
+        color: $color-white;
     }
 
     &-ghost {
@@ -17,6 +21,11 @@
     &-white {
         color: $color-grey;
         background-color: rgba($color-white, 0.6);
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: rgba($color-white, 0.8);
+        }
     }
 }
 

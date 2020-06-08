@@ -1,0 +1,44 @@
+.auth-select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+
+    .auth-type {
+        margin: 0 3rem;
+        cursor: pointer;
+    }
+
+    .selected {
+        color: $color-secondary;
+
+        &::after {
+            display: block;
+            content: '';
+            background-color: $color-secondary;
+            width: 5px;
+            height: 5px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    }
+}
+.auth-type-msg {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 1.6rem;
+}
+
+.auth-status-msg {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.7rem;
+    opacity: 0;
+    animation: fade-in 0.2s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.login {
+    animation: fade-in 0.05s;
+}

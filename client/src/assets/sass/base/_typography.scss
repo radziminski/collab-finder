@@ -12,9 +12,7 @@ body {
     }
 
     &-gradient {
-        background: $gradient-horizontal;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        @include text-gradient;
     }
 
     &-x-large {
@@ -48,5 +46,21 @@ body {
 
     &-shadow {
         text-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    &-center {
+        text-align: center;
+    }
+
+    &-semi-bold {
+        font-weight: 400;
+    }
+
+    &-green {
+        color: $color-green;
+    }
+
+    &-red {
+        color: $color-red;
     }
 }

@@ -1,35 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../layout/Modal';
+import Auth from '../auth/AuthContainer';
+import { connect } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = ({ isAuthenticated }) => {
+    const [showAuth, setShowAuth] = useState(false);
+    const [authType, setAuthType] = useState('login');
+
+    const openAuthModal = (authType) => {
+        setAuthType(authType);
+        setShowAuth(true);
+    };
+    const closeAuthModal = (authType) => {
+        setAuthType(authType);
+        setShowAuth(false);
+    };
+
+    let loggedInLinks = (
+        <ul className="nav list-row">
+            <li className="nav-link selected">Home</li>
+            <li className="nav-link">Producers</li>
+            <li className="nav-link">My Collabs</li>
+            <li className="nav-link">Browse Collabs</li>
+        </ul>
+    );
+
+    let loggedOutLinks = (
+        <ul className="nav list-row">
+            <li className="nav-link selected">Home</li>
+            <li className="nav-link">Producers</li>
+            <li className="nav-link" onClick={() => openAuthModal('login')}>
+                Login
+            </li>
+            <li className="nav-link" onClick={() => openAuthModal('register')}>
+                Sign-up
+            </li>
+        </ul>
+    );
+
     return (
-        <header class="navbar">
-            <h1 class="text-dark">
-                <a href="index.html">
-                    <div class="logo">
-                        <div class="text-gradient">Collab </div> &nbsp;Finder
+        <>
+            <header className="navbar">
+                <h1 className="text-dark">
+                    <div className="logo">
+                        <div className="text-gradient">Collab </div> &nbsp;Finder
                     </div>
-                </a>
-            </h1>
-            <nav>
-                <ul class="nav list-row">
-                    <li>
-                        <a href="profiles.html" class="selected">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="profiles.html">Producers</a>
-                    </li>
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Sign-up</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+                </h1>
+                <nav>{isAuthenticated ? loggedInLinks : loggedOutLinks}</nav>
+            </header>
+            <Modal open={showAuth} onClose={closeAuthModal}>
+                <Auth onClose={closeAuthModal} authType={authType} />
+            </Modal>
+        </>
     );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(Navbar);

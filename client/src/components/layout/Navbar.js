@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Modal from '../layout/Modal';
 import Auth from '../auth/AuthContainer';
 import { connect } from 'react-redux';
+import { openLogin, openRegister, closeAuth } from '../../actions/ui';
+import { loginByJWT, logOut } from '../../actions/auth';
 
-const Navbar = ({ isAuthenticated }) => {
-    const [showAuth, setShowAuth] = useState(false);
-    const [authType, setAuthType] = useState('login');
-
-    const openAuthModal = (authType) => {
-        setAuthType(authType);
-        setShowAuth(true);
-    };
-    const closeAuthModal = (authType) => {
-        setAuthType(authType);
-        setShowAuth(false);
-    };
+const Navbar = ({
+    isAuthenticated,
+    loginByJWT,
+    authType,
+    showAuth,
+    openLogin,
+    openRegister,
+    closeAuth,
+    logOut,
+}) => {
+    useEffect(() => {
+        const jwt = localStorage.getItem('token');
+        if (jwt) loginByJWT({ jwt });
+    }, []);
 
     let loggedInLinks = (
         <ul className="nav list-row">
             <li className="nav-link selected">Home</li>
             <li className="nav-link">Producers</li>
-            <li className="nav-link">My Collabs</li>
+            <li className="nav-link" onClick={logOut}>
+                Logout
+            </li>
             <li className="nav-link">Browse Collabs</li>
         </ul>
     );
@@ -29,10 +35,10 @@ const Navbar = ({ isAuthenticated }) => {
         <ul className="nav list-row">
             <li className="nav-link selected">Home</li>
             <li className="nav-link">Producers</li>
-            <li className="nav-link" onClick={() => openAuthModal('login')}>
+            <li className="nav-link" onClick={openLogin}>
                 Login
             </li>
-            <li className="nav-link" onClick={() => openAuthModal('register')}>
+            <li className="nav-link" onClick={openRegister}>
                 Sign-up
             </li>
         </ul>
@@ -48,8 +54,8 @@ const Navbar = ({ isAuthenticated }) => {
                 </h1>
                 <nav>{isAuthenticated ? loggedInLinks : loggedOutLinks}</nav>
             </header>
-            <Modal open={showAuth} onClose={closeAuthModal}>
-                <Auth onClose={closeAuthModal} authType={authType} />
+            <Modal open={showAuth && !isAuthenticated} onClose={closeAuth}>
+                <Auth authType={authType} />
             </Modal>
         </>
     );
@@ -57,6 +63,10 @@ const Navbar = ({ isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
+    showAuth: state.ui.showAuthModal,
+    authType: state.ui.authType,
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { openLogin, logOut, openRegister, closeAuth, loginByJWT })(
+    Navbar
+);

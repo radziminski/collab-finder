@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Login from './Login';
 import Register from './Register';
+import { closeAuth } from '../../actions/ui';
+import { connect } from 'react-redux';
 
-const AuthContainer = ({ authType }) => {
+const AuthContainer = ({ authType, closeAuth }) => {
     const [authTypeSate, setAuthTypeState] = useState(authType);
 
     let component = <Login changeAuthType={() => setAuthTypeState('register')} />;
@@ -21,7 +23,10 @@ const AuthContainer = ({ authType }) => {
                 <div className={authSelectLoginClass} onClick={() => setAuthTypeState('login')}>
                     login
                 </div>
-                <div className={authSelectRegisterClass} onClick={() => setAuthTypeState('register')}>
+                <div
+                    className={authSelectRegisterClass}
+                    onClick={() => setAuthTypeState('register')}
+                >
                     sign up
                 </div>
             </div>
@@ -30,4 +35,4 @@ const AuthContainer = ({ authType }) => {
     );
 };
 
-export default AuthContainer;
+export default connect(null, { closeAuth })(AuthContainer);

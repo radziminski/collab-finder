@@ -3,13 +3,10 @@ import TextInput from '../inputs/TextInput';
 import { connect } from 'react-redux';
 import { login as loginUser } from '../../actions/auth';
 
-const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser }) => {
+const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser, alert }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [status, setStatus] = useState({
-        msg: null,
-        type: 'success',
-    });
+    const status = alert;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +17,11 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser }) => {
     let statusMsg = null;
     if (status.msg)
         statusMsg = (
-            <div className={`auth-status-msg ${status.type === 'success' ? ' text-green' : ' text-red'}`}>
+            <div
+                className={`auth-status-msg ${
+                    status.type === 'success' ? ' text-green' : ' text-red'
+                }`}
+            >
                 {status.msg}
             </div>
         );
@@ -52,7 +53,10 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser }) => {
                     </button>
                     <div className="auth-type-msg">
                         Haven't signed up yet? Click{' '}
-                        <span className="text-gradient text-semi-bold u-pointer" onClick={changeAuthType}>
+                        <span
+                            className="text-gradient text-semi-bold u-pointer"
+                            onClick={changeAuthType}
+                        >
                             here.
                         </span>
                     </div>
@@ -65,7 +69,7 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser }) => {
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     isLoading: state.auth.isLoading,
-    isAuthenticated: state.auth.isAuthenticated,
+    alert: state.alert,
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

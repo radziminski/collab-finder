@@ -10,18 +10,7 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [status, setStatus] = useState({
-        msg: null,
-        type: 'success',
-    });
-
-    useEffect(() => {
-        if (alert)
-            setStatus({
-                msg: alert.msg,
-                type: alert.type,
-            });
-    }, [alert]);
+    const status = alert;
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -35,7 +24,10 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
         e.preventDefault();
 
         if (password !== confirmPassword)
-            return setStatus({ msg: 'Passwords do not match. Please fill in the same password', type: 'error' });
+            return setAlert({
+                msg: 'Passwords do not match. Please fill in the same password',
+                type: 'error',
+            });
 
         registerUser({ name, email, password });
     };
@@ -43,7 +35,11 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
     let statusMsg = null;
     if (status.msg)
         statusMsg = (
-            <div className={`auth-status-msg ${status.type === 'success' ? ' text-green' : ' text-red'}`}>
+            <div
+                className={`auth-status-msg ${
+                    status.type === 'success' ? ' text-green' : ' text-red'
+                }`}
+            >
                 {status.msg}
             </div>
         );
@@ -87,7 +83,10 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
                     <button className="btn btn-full m-center">Next</button>
                     <div className="auth-type-msg">
                         Already have an account? Login in{' '}
-                        <span className="text-gradient text-semi-bold  u-pointer" onClick={changeAuthType}>
+                        <span
+                            className="text-gradient text-semi-bold  u-pointer"
+                            onClick={changeAuthType}
+                        >
                             here.
                         </span>
                     </div>

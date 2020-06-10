@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOADING, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    LOADING,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+} from './types';
 import { setAlert } from './alert';
 
 export const regsiter = ({ name, email, password }) => async (dispatch) => {
@@ -57,4 +64,39 @@ export const login = ({ email, password }) => async (dispatch) => {
             payload: err,
         });
     }
+};
+
+export const loginByJWT = ({ jwt }) => async (dispatch) => {
+    dispatch({
+        type: LOADING,
+    });
+    const config = {
+        headers: {
+            'x-auth-token': jwt,
+        },
+    };
+    try {
+        const res = await axios.get('/api/auth/', config);
+        res.data.token = jwt;
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data,
+        });
+        dispatch(setAlert({ msg: 'Login successfull', type: 'success' }));
+    } catch (err) {
+        console.log(err);
+        if (err.response && err.response.data.error)
+            dispatch(setAlert({ msg: err.response.data.error.errors[0].msg, type: 'danger' }));
+        dispatch({
+            type: LOGIN_FAIL,
+            payload: err,
+        });
+        localStorage.removeItem('token');
+    }
+};
+
+export const logOut = () => (dispatch) => {
+    dispatch({
+        type: LOGOUT,
+    });
 };

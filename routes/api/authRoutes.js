@@ -3,17 +3,10 @@ const authUser = require('../../middleware/authUser');
 const authController = require('../../controllers/authController');
 const router = express.Router();
 
-// @route   GET api/auth
-// @desc    Test route
-// @access  Public
-router
-    .route('/login')
-    .get(authUser, authController.getCurrentUser)
-    .post(authController.loginValidator, authController.login);
+router.route('/').get(authUser, authController.getCurrentUser);
 
-// @route   POST api/users
-// @desc    Register user
-// @access  Public
+router.route('/login').post(authController.loginValidator, authController.login);
+
 router
     .route('/register')
     .post(authController.registerValidator, authController.register)

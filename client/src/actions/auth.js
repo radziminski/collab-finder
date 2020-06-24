@@ -1,13 +1,7 @@
 import axios from 'axios';
-import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    LOADING,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-} from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOADING, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 import { setAlert } from './alert';
+import { closeAuth } from './ui';
 
 export const regsiter = ({ name, email, password }) => async (dispatch) => {
     dispatch({
@@ -27,6 +21,7 @@ export const regsiter = ({ name, email, password }) => async (dispatch) => {
             type: REGISTER_SUCCESS,
             payload: res.data,
         });
+        dispatch(closeAuth());
         dispatch(setAlert({ msg: 'Register successfull', type: 'success' }));
     } catch (err) {
         console.log(err.response.data.error.errors);
@@ -55,6 +50,7 @@ export const login = ({ email, password }) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: res.data,
         });
+        dispatch(closeAuth());
         dispatch(setAlert({ msg: 'Login successfull', type: 'success' }));
     } catch (err) {
         console.log(err);

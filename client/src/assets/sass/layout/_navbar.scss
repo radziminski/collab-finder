@@ -42,6 +42,12 @@
                 background-image: $gradient-horizontal;
             }
 
+            &:nth-child(even) {
+                &::after {
+                    background-image: $gradient-horizontal-rev;
+                }
+            }
+
             &:not(:last-child):hover::after {
                 opacity: 1;
             }

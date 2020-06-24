@@ -1,19 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { openLogin, openRegister } from '../../actions/ui';
 
-const Landing = () => {
+const Landing = ({ isAuthenticated, openLogin, openRegister }) => {
+    const onAuthClicked = (authType) => {
+        if (isAuthenticated) {
+            // Redirect to collabs
+            return;
+        }
+
+        if (authType === 'login') openLogin();
+        else openRegister();
+    };
+
     return (
         <section className="home">
             <div className="primary-overlay">
                 <div className="home-hero">
-                    <h2 className="text-large text-thin  text-shadow">Find a partner for your next song on</h2>
+                    <h2 className="text-large text-thin text-shadow">Find a partner for your next song on</h2>
                     <h1 className="text-x-large text-bold ">Collab Finder</h1>
                     <div className="buttons buttons-center m-top-medium">
-                        <a href="register.html" className="btn btn-full btn-inline">
+                        <button className="btn btn-full btn-inline" onClick={() => onAuthClicked('register')}>
                             Sign Up
-                        </a>
-                        <a href="login.html" className="btn btn-white btn-inline">
+                        </button>
+                        <button className="btn btn-white btn-inline" onClick={() => onAuthClicked('login')}>
                             Login
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -21,4 +33,8 @@ const Landing = () => {
     );
 };
 
-export default Landing;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { openLogin, openRegister })(Landing);

@@ -8,4 +8,13 @@ export const setAlert = ({ msg, type }) => (dispatch) => {
             type,
         },
     });
+    setTimeout(() => {
+        dispatch({
+            type: SET_ALERT,
+            payload: {
+                msg: '',
+                type: null,
+            },
+        });
+    }, 3000);
 };

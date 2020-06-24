@@ -2,7 +2,7 @@ import { OPEN_LOGIN, OPEN_REGISTER, CLOSE_AUTH } from '../actions/types';
 
 const initialState = {
     showAuthModal: false,
-    authModalType: null,
+    authType: null,
 };
 
 export default function (state = initialState, action) {
@@ -11,19 +11,19 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 showAuthModal: true,
-                authModalType: 'login',
+                authType: 'login',
             };
         case OPEN_REGISTER:
             return {
                 ...state,
                 showAuthModal: true,
-                authModalType: 'register',
+                authType: 'register',
             };
         case CLOSE_AUTH:
             return {
                 ...state,
                 showAuthModal: false,
-                authModalType: null,
+                authType: null,
             };
         default:
             return state;

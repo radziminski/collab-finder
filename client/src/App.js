@@ -6,14 +6,25 @@ import Landing from './components/views/Landing';
 import { Provider } from 'react-redux';
 import store from './store';
 import Collabs from './components/views/Collabs';
+import Dashboard from './components/views/Dashboard';
+import { loadUser } from './actions/auth';
+import PrivateRoute from './components/routing/PrivateRoute';
+import EditProfile from './components/views/EditProfile';
 
 const App = () => {
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
     return (
         <Provider store={store}>
             <Router>
                 <Navbar />
-                <Route exact path="/" component={Landing} />
-                <Route path="/collabs" component={Collabs} />
+                <Switch>
+                    <Route exact path="/" component={Landing} />
+                    <Route path="/collabs" component={Collabs} />
+                    <PrivateRoute path="/dashboard" component={Dashboard} />
+                    <PrivateRoute path="/profile/edit" component={EditProfile} />
+                </Switch>
             </Router>
         </Provider>
     );

@@ -1,58 +1,51 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from '../layout/Modal';
 import Auth from '../auth/AuthContainer';
 import { connect } from 'react-redux';
 import { openLogin, openRegister, closeAuth } from '../../actions/ui';
-import { loginByJWT, logOut } from '../../actions/auth';
+import { logout } from '../../actions/auth';
+import UserNav from './UserNav';
 
-const Navbar = ({
-    isAuthenticated,
-    loginByJWT,
-    authType,
-    showAuth,
-    openLogin,
-    openRegister,
-    closeAuth,
-    logOut,
-}) => {
-    useEffect(() => {
-        const jwt = localStorage.getItem('token');
-        if (jwt) loginByJWT({ jwt });
-    }, []);
-
-    let loggedInLinks = (
+const Navbar = ({ isAuthenticated, loadUser, authType, showAuth, openLogin, openRegister, closeAuth, logout }) => {
+    let authLinks = (
         <ul className="nav list-row">
             <li className="nav-link selected">Home</li>
             <li className="nav-link">Producers</li>
-            <li className="nav-link" onClick={logOut}>
+            <li className="nav-link" onClick={logout}>
                 Logout
             </li>
-            <li className="nav-link">Browse Collabs</li>
+            <li className="nav-link nav-link-selected">Browse Collabs</li>
+            <li className="nav-link">
+                <UserNav />
+            </li>
         </ul>
     );
 
-    let loggedOutLinks = (
+    let guestLinks = (
         <ul className="nav list-row">
             <li className="nav-link selected">Home</li>
             <li className="nav-link">Producers</li>
             <li className="nav-link" onClick={openLogin}>
                 Login
             </li>
-            <li className="nav-link" onClick={openRegister}>
+            <li className="nav-link nav-link-selected" onClick={openRegister}>
                 Sign-up
             </li>
         </ul>
     );
 
+    let className = 'navbar';
+    if (isAuthenticated) className += ' navbar-shadow';
+
     return (
         <>
-            <header className="navbar">
+            <header className={className}>
                 <h1 className="text-dark">
                     <div className="logo">
                         <div className="text-gradient">Collab </div> &nbsp;Finder
                     </div>
                 </h1>
-                <nav>{isAuthenticated ? loggedInLinks : loggedOutLinks}</nav>
+                <nav>{isAuthenticated ? authLinks : guestLinks}</nav>
             </header>
             <Modal open={showAuth && !isAuthenticated} onClose={closeAuth}>
                 <Auth authType={authType} />
@@ -67,6 +60,4 @@ const mapStateToProps = (state) => ({
     authType: state.ui.authType,
 });
 
-export default connect(mapStateToProps, { openLogin, logOut, openRegister, closeAuth, loginByJWT })(
-    Navbar
-);
+export default connect(mapStateToProps, { openLogin, logout, openRegister, closeAuth })(Navbar);

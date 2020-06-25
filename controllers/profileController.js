@@ -1,4 +1,4 @@
-const { check } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const Profile = require('../models/Profile');
 const AppError = require('../errors/appError');
 const catchAsync = require('../errors/catchAsync');

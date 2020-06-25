@@ -10,6 +10,10 @@
     z-index: 100;
     background-color: $color-white;
 
+    &-shadow {
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+    }
+
     .nav {
         height: 100%;
 
@@ -24,7 +28,7 @@
             font-size: 1.8rem;
             cursor: pointer;
 
-            &:last-child {
+            &-selected {
                 background-color: $color-secondary;
                 color: $color-white;
             }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextInput from '../inputs/TextInput';
 import { connect } from 'react-redux';
 import { login as loginUser } from '../../actions/auth';
+import { Redirect } from 'react-router-dom';
 
 const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser, alert }) => {
     const [email, setEmail] = useState('');
@@ -10,23 +11,19 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser, alert })
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('login');
         loginUser({ email, password });
     };
 
     let statusMsg = null;
     if (status.msg)
         statusMsg = (
-            <div
-                className={`auth-status-msg ${
-                    status.type === 'success' ? ' text-green' : ' text-red'
-                }`}
-            >
+            <div className={`auth-status-msg ${status.type === 'success' ? ' text-green' : ' text-red'}`}>
                 {status.msg}
             </div>
         );
     if (isLoading) statusMsg = <div>LOAADINGG</div>;
 
+    if (isAuthenticated) return <Redirect to="/dashboard" />;
     return (
         <>
             <form className="login" onSubmit={onSubmit}>
@@ -53,10 +50,7 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser, alert })
                     </button>
                     <div className="auth-type-msg">
                         Haven't signed up yet? Click{' '}
-                        <span
-                            className="text-gradient text-semi-bold u-pointer"
-                            onClick={changeAuthType}
-                        >
+                        <span className="text-gradient text-semi-bold u-pointer" onClick={changeAuthType}>
                             here.
                         </span>
                     </div>

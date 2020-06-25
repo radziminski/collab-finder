@@ -63,4 +63,15 @@ body {
     &-red {
         color: $color-red;
     }
+
+    &-underline {
+        &:after {
+            content: '';
+            display: block;
+            width: 14rem;
+            margin: 0 auto;
+            height: 2px;
+            background-image: $gradient-horizontal;
+        }
+    }
 }

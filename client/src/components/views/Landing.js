@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { openLogin, openRegister } from '../../actions/ui';
+import { Redirect } from 'react-router-dom';
 
 const Landing = ({ isAuthenticated, openLogin, openRegister }) => {
     const onAuthClicked = (authType) => {
@@ -12,6 +13,8 @@ const Landing = ({ isAuthenticated, openLogin, openRegister }) => {
         if (authType === 'login') openLogin();
         else openRegister();
     };
+
+    if (isAuthenticated) return <Redirect to="/dashboard" />;
 
     return (
         <section className="home">

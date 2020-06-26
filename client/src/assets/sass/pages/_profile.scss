@@ -27,10 +27,29 @@
     &-card {
         width: 90%;
         max-width: 40rem;
-        height: 20rem;
+
         margin-top: -14rem;
         background-color: $color-white;
         box-shadow: 0 1px 3px 0 rgba($color-black, 0.15);
         border-radius: 2px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        color: $color-grey;
+
+        &-img {
+            width: 13rem;
+            height: 13rem;
+            margin: -6.5rem auto 2rem auto;
+            border-radius: 50%;
+            border: 3px solid $color-white;
+            box-shadow: 0 0 1.2rem rgba(45, 51, 57, 0.33);
+        }
+
+        &-content {
+            width: 100%;
+            padding: 3rem;
+        }
     }
 }

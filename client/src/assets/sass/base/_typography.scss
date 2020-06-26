@@ -32,6 +32,10 @@ body {
         font-size: 2rem;
     }
 
+    &-normal {
+        font-size: 1.8rem;
+    }
+
     &-thin {
         font-weight: 300;
     }
@@ -54,6 +58,9 @@ body {
 
     &-semi-bold {
         font-weight: 400;
+    }
+    &-semi-bold-2 {
+        font-weight: 600;
     }
 
     &-green {

@@ -5,8 +5,9 @@ import Textarea from '../inputs/Textarea';
 import ButtonFull from '../buttons/ButtonFull';
 import { connect } from 'react-redux';
 import { saveProfile, updateProfile } from '../../actions/profile';
+import { withRouter } from 'react-router-dom';
 
-const EditProfile = ({ profile, saveProfile, updateProfile }) => {
+const EditProfile = ({ profile, saveProfile, updateProfile, history }) => {
     const [bio, setBio] = useState('');
     const [company, setCompany] = useState('');
     const [website, setWebsite] = useState('');
@@ -56,6 +57,8 @@ const EditProfile = ({ profile, saveProfile, updateProfile }) => {
 
         if (!profile) saveProfile(newProfile);
         else updateProfile(newProfile);
+
+        history.push('/profile');
     };
 
     return (
@@ -165,4 +168,4 @@ const mapStateToProps = (state) => ({
     profile: state.profile.profile,
 });
 
-export default connect(mapStateToProps, { saveProfile, updateProfile })(EditProfile);
+export default withRouter(connect(mapStateToProps, { saveProfile, updateProfile })(EditProfile));

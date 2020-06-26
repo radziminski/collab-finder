@@ -27,7 +27,7 @@ const App = () => {
                     <Route exact path="/" component={Landing} />
                     <Route path="/collabs" component={Collabs} />
                     <PrivateRoute path="/dashboard" component={Dashboard} />
-                    <PrivateRoute path="/profile/" component={Profile} />
+                    <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/profile/edit" component={EditProfile} />
                 </Switch>
             </Router>

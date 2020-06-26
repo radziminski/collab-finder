@@ -14,14 +14,14 @@ const Landing = ({ isAuthenticated, openLogin, openRegister }) => {
         else openRegister();
     };
 
-    if (isAuthenticated) return <Redirect to="/dashboard" />;
+    if (isAuthenticated) return <Redirect to="/profile" />;
 
     return (
         <section className="home">
             <div className="primary-overlay">
                 <div className="home-hero">
-                    <h2 className="text-large text-thin text-shadow">Find a partner for your next song on</h2>
-                    <h1 className="text-x-large text-bold ">Collab Finder</h1>
+                    <h2 className="title-large text-thin text-shadow">Find a partner for your next song on</h2>
+                    <h1 className="title-x-large text-bold ">Collab Finder</h1>
                     <div className="buttons buttons-center m-top-medium">
                         <button className="btn btn-full btn-inline" onClick={() => onAuthClicked('register')}>
                             Sign Up

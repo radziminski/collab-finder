@@ -7,3 +7,28 @@
         opacity: 1;
     }
 }
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.animation-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+    animation-fill-mode: backwards;
+}
+
+.animation-fade-in-fast {
+    animation: fade-in 0.1s ease-in-out;
+    animation-fill-mode: backwards;
+}
+
+.animation-fade-out {
+    animation: fade-out 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+}

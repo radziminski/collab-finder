@@ -12,6 +12,8 @@ import { loadUser } from './actions/auth';
 import PrivateRoute from './components/routing/PrivateRoute';
 import EditProfile from './components/views/EditProfile';
 import Profile from './components/views/Profile';
+import Footer from './components/layout/Footer';
+import SpinnerModal from './components/layout/SpinnerModal';
 
 axios.defaults.baseURL = 'http://localhost:3000/';
 
@@ -30,6 +32,9 @@ const App = () => {
                     <PrivateRoute exact path="/profile" component={Profile} />
                     <PrivateRoute exact path="/profile/edit" component={EditProfile} />
                 </Switch>
+                <SpinnerModal />
+
+                <Footer />
             </Router>
         </Provider>
     );

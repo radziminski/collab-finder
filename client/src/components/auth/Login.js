@@ -27,7 +27,7 @@ const Login = ({ changeAuthType, isAuthenticated, isLoading, loginUser, alert })
     return (
         <>
             <form className="login" onSubmit={onSubmit}>
-                <h3 className="text-large text-center m-bottom-small">Login</h3>
+                <h3 className="title-large text-center m-bottom-small">Login</h3>
                 <TextInput
                     label="email"
                     onChange={(value) => setEmail(value)}

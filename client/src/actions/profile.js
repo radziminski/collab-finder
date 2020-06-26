@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR, SAVE_PROFILE, UPDATE_PROFILE } from './types';
+import { GET_PROFILE, PROFILE_ERROR, SAVE_PROFILE, UPDATE_PROFILE, PROFILE_LOADING } from './types';
 import getErrorsFromResponse from '../utils/getErrorsFromResponse';
 
 export const getCurrentUserProfile = () => async (dispatch) => {
+    dispatch({
+        type: PROFILE_LOADING,
+    });
     try {
         const res = await axios.get('api/profile/me');
-        console.log(res.data.data.profile);
+        console.log('GETTING PROFILE', res.data.data.profile);
         dispatch({
             type: GET_PROFILE,
             payload: res.data.data,
@@ -23,6 +25,9 @@ export const getCurrentUserProfile = () => async (dispatch) => {
 };
 
 export const saveProfile = (profile) => async (dispatch) => {
+    dispatch({
+        type: PROFILE_LOADING,
+    });
     try {
         const res = await axios.post('api/profile', profile);
         console.log(res);
@@ -42,6 +47,9 @@ export const saveProfile = (profile) => async (dispatch) => {
 };
 
 export const updateProfile = (profile) => async (dispatch) => {
+    dispatch({
+        type: PROFILE_LOADING,
+    });
     try {
         console.log('updating', profile);
         const res = await axios.patch('api/profile', profile);

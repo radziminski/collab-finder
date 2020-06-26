@@ -67,7 +67,7 @@ const EditProfile = ({ profile, saveProfile, updateProfile, history }) => {
                 <div className="m-bottom-medium">
                     <SectionTitle>Set up your profile</SectionTitle>
                 </div>
-                <h2 className="text-small text-semi-bold m-bottom-tiny">Personal Info</h2>
+                <h2 className="title-small text-semi-bold m-bottom-tiny">Personal Info</h2>
                 <Textarea
                     label="Bio*"
                     icon="fas fa-book"
@@ -84,7 +84,7 @@ const EditProfile = ({ profile, saveProfile, updateProfile, history }) => {
                     subtitle="Tell us where are you working"
                 />
 
-                <h2 className="text-small text-semi-bold m-bottom-tiny">Musical Info</h2>
+                <h2 className="title-small text-semi-bold m-bottom-tiny">Musical Info</h2>
                 <TextInput
                     label="Status"
                     icon="fa fa-user"
@@ -109,7 +109,7 @@ const EditProfile = ({ profile, saveProfile, updateProfile, history }) => {
                     onChange={setSkills}
                 />
 
-                <h2 className="text-small text-semi-bold m-bottom-tiny">Contact Info</h2>
+                <h2 className="title-small text-semi-bold m-bottom-tiny">Contact Info</h2>
                 <TextInput
                     label="Website"
                     icon="fa fa-globe"
@@ -126,7 +126,7 @@ const EditProfile = ({ profile, saveProfile, updateProfile, history }) => {
                     required
                 />
 
-                <h2 className="text-small text-semi-bold m-bottom-tiny">Social Links</h2>
+                <h2 className="title-small text-semi-bold m-bottom-tiny">Social Links</h2>
                 <TextInput
                     designType="inline"
                     label="Facebook"

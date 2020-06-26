@@ -2,12 +2,12 @@ import React from 'react';
 import ButtonFull from '../buttons/ButtonFull';
 import { withRouter } from 'react-router-dom';
 
-const ProfileCard = ({ img, name, email, bio, daw, status, company, canBeEdited, history }) => {
+const ProfileCard = ({ img, name, email, profile: { bio, daw, status, company, location }, canBeEdited, history }) => {
     return (
         <div className="profile-card">
             <img src={img} alt="user" className="profile-card-img" />
-            <h2 className="text-large text-semi-bold-2">{name}</h2>
-            <h3 className="text-small text-thin text-normal">{email}</h3>
+            <h2 className="title-large text-semi-bold-2">{name}</h2>
+            <h3 className="title-small text-thin text-normal text-grey">{location}</h3>
             <div className="profile-card-content">
                 <h4 className="profile-card-subtitle">DAW</h4>
                 <p className="text-normal m-bottom-tiny">{daw || '-'}</p>

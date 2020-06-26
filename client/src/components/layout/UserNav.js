@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
+import { withRouter } from 'react-router-dom';
 
-const UserNav = ({ logout, user, profile }) => {
+const UserNav = ({ logout, user, history }) => {
     const [showNav, setShowNav] = useState(false);
 
     const toggleNav = () => {
@@ -29,7 +30,13 @@ const UserNav = ({ logout, user, profile }) => {
                     </button>
                 </div>
                 <ul className="user-nav-links">
-                    <li className="user-nav-link">
+                    <li
+                        className="user-nav-link"
+                        onClick={() => {
+                            history.push('/profile');
+                            toggleNav();
+                        }}
+                    >
                         <i className="fa fa-user user-nav-link-icon" />
                         My Profile
                     </li>
@@ -57,8 +64,7 @@ const UserNav = ({ logout, user, profile }) => {
 };
 
 const mapStateToProps = (state) => ({
-    profile: state.profile.profile,
     user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { logout })(UserNav);
+export default withRouter(connect(mapStateToProps, { logout })(UserNav));

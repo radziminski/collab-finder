@@ -46,7 +46,7 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
     return (
         <>
             <form className="login" onSubmit={onSubmit}>
-                <h3 className="text-large text-center m-bottom-small">Sign Up</h3>
+                <h3 className="title-large text-center m-bottom-small">Sign Up</h3>
                 <TextInput
                     label="Name"
                     onChange={(value) => setName(value)}
@@ -60,6 +60,7 @@ const Register = ({ changeAuthType, registerUser, alert, isLoading, isAuthentica
                     required
                     icon="fa fa-envelope"
                     placeholder="ex. panda@gmail.com"
+                    subtitle="This website uses gravatars, so if you want to have profile image, use email connected to gravatar profile."
                 />
                 <TextInput
                     label="password"

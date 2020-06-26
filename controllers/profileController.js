@@ -18,7 +18,7 @@ exports.getMyProfile = catchAsync(async (req, res, next) => {
 
 exports.profileValidator = [
     check('status', 'Status is required').not().isEmpty(),
-    check('skills', 'Skills are required').not().isEmpty(),
+    check('skills', 'Skills should be an array').isArray(),
 ];
 
 const saveProfile = catchAsync(async (req, res, next, update = false, id = null) => {

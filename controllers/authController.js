@@ -66,11 +66,13 @@ exports.register = catchAsync(async (req, res, next) => {
     if (user) return next(new AppError('User with given email already exists.', 400));
 
     // 2) Get user avatar from email
-    const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm',
-    });
+    const avatar =
+        'https:' +
+        gravatar.url(email, {
+            s: '200',
+            r: 'pg',
+            d: 'mm',
+        });
 
     user = new User({
         name,

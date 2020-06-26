@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { dawsList } = require('../devData/data');
+const { dawsList, statusList } = require('../devData/data');
 
 const ProfileSchema = new mongoose.Schema(
     {
@@ -18,6 +18,7 @@ const ProfileSchema = new mongoose.Schema(
         },
         status: {
             type: String,
+            enum: statusList,
         },
         skills: {
             type: [String],

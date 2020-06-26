@@ -1,4 +1,5 @@
 import { REGISTER_SUCCESS, LOGOUT, REGISTER_FAIL, LOADING, LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/types';
+import setAuthTokenHeader from '../utils/setAuthTokenHeader';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -18,6 +19,7 @@ export default function (state = initialState, action) {
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token);
+            setAuthTokenHeader(payload.token);
             return {
                 ...state,
                 user: payload.data.user,
@@ -28,6 +30,7 @@ export default function (state = initialState, action) {
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');
+            setAuthTokenHeader(null);
             return {
                 ...state,
                 token: null,

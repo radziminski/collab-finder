@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 
-const profileImg = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50';
-
-const UserNav = ({ logout }) => {
+const UserNav = ({ logout, user, profile }) => {
     const [showNav, setShowNav] = useState(false);
 
     const toggleNav = () => {
         setShowNav(!showNav);
     };
 
+    const profileImg = user ? user.avatar : 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50';
+
+    console.log(user);
     let nav = null;
     if (showNav) {
         nav = (
@@ -20,8 +21,8 @@ const UserNav = ({ logout }) => {
                         <img className="user-nav-img" src={profileImg} alt="User"></img>
                     </div>
                     <div className="user-nav-info-text">
-                        <div className="user-nav-name">Jan Radzimiński</div>
-                        <div className="user-nav-email">radziminski.j@gmail.com</div>
+                        <div className="user-nav-name">{user ? user.name : ''}</div>
+                        <div className="user-nav-email">{user ? user.email : ''}</div>
                     </div>
                     <button className="user-nav-close-btn" onClick={toggleNav}>
                         <i className="fa fa-times" />
@@ -55,4 +56,9 @@ const UserNav = ({ logout }) => {
     );
 };
 
-export default connect(null, { logout })(UserNav);
+const mapStateToProps = (state) => ({
+    profile: state.profile.profile,
+    user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { logout })(UserNav);
